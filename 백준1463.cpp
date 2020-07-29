@@ -32,7 +32,7 @@ int main()
 				arr[a] = arr[a - 1] + 1;
 			else
 				arr[a] = arr[a / 3] + 1;
-		}
+		} 
 		else if (a % 2 == 0)
 		{
 			if (arr[a - 1] <= arr[a / 2])
