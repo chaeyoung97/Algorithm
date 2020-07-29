@@ -60,6 +60,6 @@ int main()
 			arr[a][b] = arr[b][a] = true;
 		}
 		recursive(remain);
-		cout << total << endl;
+		cout << total << endl; 
 	}
 }
