@@ -1,2 +1,2 @@
 # Algorithm
-공부 공부
+c++
