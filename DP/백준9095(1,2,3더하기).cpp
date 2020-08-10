@@ -1,52 +1,31 @@
-//재귀랑 반복문 두개로 다 풀어봄
 #include<iostream>
+#include<algorithm>
 using namespace std;
 
-int arr[41][2];
+int arr[12];	//1~11까지의 경우의 수 저장할 배열
 
-void fibo(int n)
-{
-	if (n == 1)
-		return ;
-	if (n == 0)
-		return ;
-	if (arr[n][0] == 0 && arr[n][1] == 0)
-	{
-		fibo(n - 1); fibo(n - 2);
-	}
-	arr[n][0] = arr[n - 1][0] + arr[n - 2][0];
-	arr[n][1] = arr[n - 1][1] + arr[n - 2][1];
-}
 
+//arr[7]까지 직접 해 본 결과 점화식을 만들 수 있었음
+//arr[n] = arr[n-1]+arr[n-2]+arr[n-3]
 int main()
 {
-	//재귀로 풀기
-	arr[0][0] = 1;
-	arr[1][1] = 1;
-
-	int t; 
-	int n;
+	int t;
+	int n; // 0<n<11
 	cin >> t;
-	while (t--)
-	{
-		cin >> n;
-		fibo(n);
-		cout << arr[n][0] << " " << arr[n][1] << endl;
-	}
 
-	//반복문으로 풀기
-	/*
-	int a = 2;
-	while (a < 41)
+	arr[1] = 1;
+	arr[2] = 2;
+	arr[3] = 4;
+	int a = 4;
+	while (a < 11)
 	{
-		arr[a][0] = arr[a - 1][0] + arr[a - 2][0];
-		arr[a][1] = arr[a - 1][1] + arr[a - 2][1];
+		arr[a] = arr[a - 1] + arr[a - 2] + arr[a - 3];
 		a++;
 	}
 	while (t--)
 	{
 		cin >> n;
-		cout << arr[n][0] << " " << arr[n][1] << "\n";
+		cout << arr[n] << endl;
 	}
-	*/
+
 }
