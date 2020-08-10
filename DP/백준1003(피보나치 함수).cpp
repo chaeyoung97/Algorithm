@@ -7,7 +7,7 @@ int arr[41][2];
 void fibo(int n)
 {
 	if (n == 1)
-		return ;
+		return ; 
 	if (n == 0)
 		return ;
 	if (arr[n][0] == 0 && arr[n][1] == 0)
