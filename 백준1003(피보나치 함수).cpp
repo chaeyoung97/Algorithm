@@ -1,3 +1,4 @@
+//재귀랑 반복문 두개로 다 풀어봄
 #include<iostream>
 using namespace std;
 
@@ -16,6 +17,7 @@ void fibo(int n)
 	arr[n][0] = arr[n - 1][0] + arr[n - 2][0];
 	arr[n][1] = arr[n - 1][1] + arr[n - 2][1];
 }
+
 int main()
 {
 	//재귀로 풀기
@@ -31,8 +33,9 @@ int main()
 		fibo(n);
 		cout << arr[n][0] << " " << arr[n][1] << endl;
 	}
-	/*반복문으로 풀기
-	
+
+	//반복문으로 풀기
+	/*
 	int a = 2;
 	while (a < 41)
 	{
