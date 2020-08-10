@@ -1,155 +1,47 @@
 #include<iostream>
 using namespace std;
-#include<set>
-#include<iterator>
+#include<algorithm>
+//DP 문제 
+//메모제이션 이용
+//점화식 세우기
+//dp(n) = min(dp(n-1) , dp(n/2), dp(n/3)) + 1
+//즉 3으로 나누던가 2로 나누던가 1을 뺀 숫자 중 더 적은 연산을 필요로 하는 것에 +1 을 해줌
 
-class Node {
-public:
-
-	int elem;
-	Node* next;
-	Node(int a)
+//algorithm 의 min함수의 인자를 두개 이상 사용할 때는 {} 이렇게 중괄호로 배열처럼 사용해주면 됨
+int arr[1000005];
+int dp(int n)
+{
+	if (n == 1 || n == 2 || n == 3)
 	{
-		elem = a;
-		next = NULL;
+		return arr[n];
 	}
-};
-
-class List {
-public:
-	Node * cur;
-	int sz;
-	List() { cur = NULL; sz = 0; }
-
-	void insert(int a)
+	if (arr[n] == 0)
 	{
-		Node* v = new Node(a);
-		if (cur == NULL)
-		{
-			cur = v;
-			v->next = v;
-		}
+		//나눠지는지의 여부도 중요함 
+		//ex) 10의 경우 10/2 =5  10/3=3 이기때문에 arr[3]이 min이라서 이상한 값이 리턴 될 수 있음
+		if (n % 6 == 0)
+			arr[n] = min({ dp(n - 1), dp(n / 2), dp(n / 3) }) + 1;
+		else if (n % 3 == 0)
+			arr[n] = min(dp(n - 1), dp(n / 3)) + 1;
+		else if (n % 2 == 0)
+			arr[n] = min(dp(n - 1), dp(n / 2)) + 1;
 		else
-		{
-			v->next = cur->next;
-			cur->next = v;
-		}
-		sz++;
+			arr[n] = dp(n - 1) + 1;
 	}
-
-	void remove(int a)
-	{
-		Node* v;
-		Node* old = cur->next;
-		cur->next = old->next;
-		int chk = 0;
-		v = old;
-		sz--;
-		if (sz != 2)
-		{
-			v = v->next;
-			chk++;
-		}
-		else
-		{
-			return;
-		}
-		delete old;
-		while (chk != a)
-		{
-			v = v->next;
-			chk++;
-		}
-		Node* prev;
-		while (sz != 2)
-		{
-			sz--;
-			old = v;
-			prev = find(old);
-			v = v->next;
-			if (old == cur)
-			{
-				cur = v;
-			}
-			if (old == cur->next)
-			{
-				cur->next = old->next;
-			}
-			prev->next = old->next;
-			delete old;
-			chk = 1;
-			while (chk != a)
-
-			{
-				v = v->next;
-				chk++;
-			}
-
-
-		}
-		
-
-
-
-
-
-	}
-
-	Node* find(Node* a)
-	{
-		Node* p = cur;
-		while (p->next != a)
-		{
-			p = p->next;
-		}
-		return p;
-	}
-
-
-	void init()
-	{
-		while (sz != 0)
-		{
-			sz--;
-			Node* v = cur->next;
-			delete v;
-			v = cur;
-			delete v;
-			cur = NULL;
-			sz = 0;
-		}
-	}
-};
-
-
+	return arr[n];
+}
 int main()
 {
-	int t;
-	cin >> t;
-	List l;
-	set<int>s;
-	set<int>::iterator it;
-	for (int i = 0; i < t; i++)
-	{
-		int n, k;
-		cin >> n >> k;
-		for (int j = n; j >= 1; j--)
-		{
-			l.insert(j);
-		}
-		l.remove(k);
-		s.insert(l.cur->elem);
-		s.insert(l.cur->next->elem);
-		for (it = s.begin(); it != s.end(); it++)
-		{
-			if (it == s.begin())
-				cout << *it << " ";
-			else
-				cout << *it << endl;
-		}
 
-		s.clear();
-		l.init();
-		
-	}
+	int n;
+	cin >> n;
+
+	arr[0] = 0;
+	arr[1] = 0;
+	arr[2] = 1;
+	arr[3] = 1;
+	//이건 기본이라서 만약 재귀로 만들었어도 디폴트임
+
+	cout << dp(n) << endl;
+
 }
