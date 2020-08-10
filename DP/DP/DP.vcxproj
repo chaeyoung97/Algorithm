@@ -20,7 +20,7 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{D9CD4889-2367-49C9-9E51-FBD5EB7C6130}</ProjectGuid>
+    <ProjectGuid>{A163FB34-5983-4C0B-979A-D3BAA93F07C0}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>DP</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
@@ -143,7 +143,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="백준1463(1로 만들기).cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
