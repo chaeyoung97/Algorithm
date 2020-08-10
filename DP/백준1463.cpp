@@ -6,7 +6,7 @@ using namespace std;
 
 int arr[1000001];
 
-int main()
+int main() 
 {
 	int n;
 	cin >> n;
